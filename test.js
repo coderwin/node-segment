@@ -2,9 +2,11 @@
  * 测试
  */
  
-var Segment = require('./index').Segment;
-var POSTAG = require('./index').POSTAG; 
+var segment = require('./dist/segment.js');
+var POSTAG = segment.POSTAG; 
 var fs = require('fs');
+
+segment.useDefault();
 
 var NUM = 1;
 var text = '\
@@ -113,28 +115,23 @@ text = '各位大牛如果发现已有的东西';//，千万要告知我啊。';
 text = '没办法';
 text = '10个100%纯度的';
 text = '中国，是一个 多民族的国家。leizongmin@qq.com http://baidu.com哈哈';
-//text = '打开{http://site.com}网站';
+text = '打开{http://site.com}网站';
 text = '「美图区」';
 text = '我正在参加抽奖活动：#2013易迅送你快乐到家#，奖品丰厚，你也赶快来参加吧！活动地址：http://url.cn/Ds2hyz @wzgdmje';
 
 var s = new Date().getTime();
-var segment = new Segment();
 // 使用默认的识别模块及字典
-segment.useDefault();
+// segment.useDefault();
 //segment.loadDict(__dirname + '/a1.txt');
 console.log(Object.keys(segment.DICT.TABLE).length);
 //segment.use(['URLTokenizer', 'PunctuationTokenizer', 'ForeignTokenizer', 'SingleTokenizer', 'EmailOptimizer']);
 var e = new Date().getTime();
 console.log('init segment spent ' + ((e - s) / NUM) + 'ms');
 
-
 var s = new Date().getTime();
-for (var i = 0; i < NUM; i++)
-////////////////////////////////////////////////////////////
-
+for (var i = 0; i < NUM; i++){
   var ret = segment.doSegment(text);
-
-////////////////////////////////////////////////////////////
+}
 var e = new Date().getTime();
 var line = '';
 for (var i in ret) {

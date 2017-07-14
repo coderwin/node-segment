@@ -1,9 +1,9 @@
 var assert = require('assert');
-var Segment = require('../');
+var segment = require('../dist/segment.js');
 
 describe('ChsNameTokenizer', function () {
 
-  var segment = null;
+  // var segment = null;
 
   var toStringArray = function (arr) {
     return arr.map(function (w) {
@@ -12,7 +12,7 @@ describe('ChsNameTokenizer', function () {
   };
 
   it('init', function () {
-    segment = new Segment();
+    // segment = new Segment();
     segment.useDefault();
   });
 
